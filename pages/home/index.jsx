@@ -28,7 +28,7 @@ const Home = () => {
                             Get Started below!
                         </Heading>
                         <Link
-                            href='/centralDocSearch'
+                            href='/centralDoc'
                         >
                             <Button
                                 size= "lg"
