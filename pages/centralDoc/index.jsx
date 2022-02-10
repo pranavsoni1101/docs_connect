@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import {
          Box, Button, Center, FormControl, 
@@ -10,7 +10,7 @@ import {
 import Section from '../../components/Section'
 import SectionContent from '../../components/Section/SectionContent';
 
-const CentralDoc = () => {
+const CentralDoc = ({ cities }) => {
     const [city, setCity] = useState("");
     const [docSpeciality, setDocSpeciality] = useState("");
     const [display, setDisplay] = useState(false);
@@ -30,7 +30,7 @@ const CentralDoc = () => {
         setDisplay(true);
         console.log("Submit was called");
     }
-
+    
     return(
         <>
             <Head>
@@ -56,22 +56,15 @@ const CentralDoc = () => {
                                     autoComplete = "off"
                                     marginBottom = "1em"
                                 >
-                                    <option>Option 1</option>
-                                    <option>Option 2</option>
-                                    <option>Option 3</option>
+                                    {cities.map( city =>(
+                                        <option
+                                            key= {city._id}
+                                        >
+                                            {city.city}
+                                        </option>
+                                    ))
+                                    }
                                 </Select>
-                                {/* <Input 
-                                    id           = "city"
-                                    // name         = "city"
-                                    type         = "text"
-                                    width        = "50%"
-                                    value        = {city}
-                                    onChange     = {handleCityInputChange}
-                                    marginTop    = "4px"
-                                    placeholder  = 'City'
-                                    autoComplete = "off"
-                                    marginBottom = "1em"
-                                /> */}
                                  {/* To take input of doctors speciality */}
                                  <FormLabel htmlFor='docSpeciality'>
                                     Enter Doctor's Speciality
@@ -155,7 +148,7 @@ const CentralDoc = () => {
                                         </Tr>
                                     </Tbody>
                                 </Table>
-                            </Box>    
+                            </Box>
                 </SectionContent>
             </Section>
         </>
@@ -163,3 +156,12 @@ const CentralDoc = () => {
 }
 
 export default CentralDoc;
+
+export const getServerSideProps = async (context) =>{
+    const data = await fetch("http://localhost:3000/api/properties/cities");
+    const cities = await data.json();
+
+    return {
+        props: { cities },
+    }
+}
