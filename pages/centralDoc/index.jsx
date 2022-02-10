@@ -10,7 +10,7 @@ import {
 import Section from '../../components/Section'
 import SectionContent from '../../components/Section/SectionContent';
 
-const CentralDoc = ({ cities }) => {
+const CentralDoc = ({ cities, specialities }) => {
     const [city, setCity] = useState("");
     const [docSpeciality, setDocSpeciality] = useState("");
     const [display, setDisplay] = useState(false);
@@ -69,7 +69,27 @@ const CentralDoc = ({ cities }) => {
                                  <FormLabel htmlFor='docSpeciality'>
                                     Enter Doctor's Speciality
                                 </FormLabel>
-                                <Input 
+                                <Select
+                                    id = "docSpeciality"
+                                    type         = "text"
+                                    width        = "50%"
+                                    value        = {docSpeciality}
+                                    onChange     = {handleDocSpecialityInputChange}
+                                    marginTop    = "4px"
+                                    placeholder  = 'Speciality'
+                                    autoComplete = "off"
+                                    marginBottom = "1em"
+                                >
+                                    {specialities.map( speciality =>(
+                                        <option
+                                            key= {speciality._id}
+                                        >
+                                            {speciality.speciality}
+                                        </option>
+                                    ))
+                                    }
+                                </Select>
+                                {/* <Input 
                                     id           = "docSpeciality"
                                     // name         = "docSpeciality"
                                     type         = "text"
@@ -80,7 +100,7 @@ const CentralDoc = ({ cities }) => {
                                     placeholder  = "Dr's Speciality"
                                     autoComplete = "off"
                                     marginBottom = "1em"
-                                />
+                                /> */}
                                 <Button
                                     type        = "submit"
                                     width       = "xs"
@@ -100,7 +120,7 @@ const CentralDoc = ({ cities }) => {
                                     variant     = "striped"
                                     marginY     = "2em"
                                 >
-                                    <TableCaption>Showing results for {docSpeciality} doctors in {city}</TableCaption>
+                                    <TableCaption>Showing results for {docSpeciality}(s) in {city}</TableCaption>
                                     <Thead>
                                         <Tr>
                                             <Th>Name</Th>
@@ -158,10 +178,12 @@ const CentralDoc = ({ cities }) => {
 export default CentralDoc;
 
 export const getServerSideProps = async (context) =>{
-    const data = await fetch("http://localhost:3000/api/properties/cities");
-    const cities = await data.json();
+    const cityData = await fetch("http://localhost:3000/api/cities");
+    const cities = await cityData.json();
+    const specialityData = await fetch("http://localhost:3000/api/docSpeciality");
+    const specialities = await specialityData.json(); 
 
     return {
-        props: { cities },
+        props: { cities, specialities },
     }
 }
