@@ -3,6 +3,7 @@ import Head from 'next/head';
 import {
          Box, Button, Center, FormControl, 
          FormLabel, Grid, GridItem, Input, 
+         Select, 
          Table, TableCaption, Tbody, Td, 
          Text, Th, Thead, Tr 
         } from '@chakra-ui/react';
@@ -44,7 +45,22 @@ const CentralDoc = () => {
                                 <FormLabel htmlFor='city'>
                                     Enter the City to be searched
                                 </FormLabel>
-                                <Input 
+                                <Select
+                                    id = "city"
+                                    type         = "text"
+                                    width        = "50%"
+                                    value        = {city}
+                                    onChange     = {handleCityInputChange}
+                                    marginTop    = "4px"
+                                    placeholder  = 'City'
+                                    autoComplete = "off"
+                                    marginBottom = "1em"
+                                >
+                                    <option>Option 1</option>
+                                    <option>Option 2</option>
+                                    <option>Option 3</option>
+                                </Select>
+                                {/* <Input 
                                     id           = "city"
                                     // name         = "city"
                                     type         = "text"
@@ -55,7 +71,7 @@ const CentralDoc = () => {
                                     placeholder  = 'City'
                                     autoComplete = "off"
                                     marginBottom = "1em"
-                                />
+                                /> */}
                                  {/* To take input of doctors speciality */}
                                  <FormLabel htmlFor='docSpeciality'>
                                     Enter Doctor's Speciality
