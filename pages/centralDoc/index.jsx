@@ -11,10 +11,11 @@ import Section from '../../components/Section'
 import SectionContent from '../../components/Section/SectionContent';
 
 const CentralDoc = ({ cities, specialities }) => {
+    
+    // All the states are defined below
     const [city, setCity] = useState("");
     const [docSpeciality, setDocSpeciality] = useState("");
     const [isSubmitted, setIsSubmitted] = useState(false);
-    console.log(isSubmitted);
 
     // Sets the state with user entered value
     const handleCityInputChange = (event) => {
@@ -47,10 +48,11 @@ const CentralDoc = ({ cities, specialities }) => {
                                     Enter the City to be searched
                                 </FormLabel>
                                 <Select
-                                    id = "city"
+                                    id           = "city"
                                     type         = "text"
                                     width        = "50%"
                                     value        = {city}
+                                    variant      = "filled"
                                     onChange     = {handleCityInputChange}
                                     marginTop    = "4px"
                                     placeholder  = 'City'
@@ -71,15 +73,17 @@ const CentralDoc = ({ cities, specialities }) => {
                                     Enter Doctor's Speciality
                                 </FormLabel>
                                 <Select
-                                    id = "docSpeciality"
+                                    id           = "docSpeciality"
                                     type         = "text"
                                     width        = "50%"
                                     value        = {docSpeciality}
+                                    variant      = "filled"
                                     onChange     = {handleDocSpecialityInputChange}
                                     marginTop    = "4px"
                                     placeholder  = 'Speciality'
                                     autoComplete = "off"
                                     marginBottom = "1em"
+                                    isRequired
                                 >
                                     {specialities.map( speciality =>(
                                         <option
@@ -90,18 +94,6 @@ const CentralDoc = ({ cities, specialities }) => {
                                     ))
                                     }
                                 </Select>
-                                {/* <Input 
-                                    id           = "docSpeciality"
-                                    // name         = "docSpeciality"
-                                    type         = "text"
-                                    width        = "50%"
-                                    value        = {docSpeciality}
-                                    onChange     = {handleDocSpecialityInputChange}
-                                    marginTop    = "4px"
-                                    placeholder  = "Dr's Speciality"
-                                    autoComplete = "off"
-                                    marginBottom = "1em"
-                                /> */}
                                 <Button
                                     type        = "submit"
                                     width       = "xs"
