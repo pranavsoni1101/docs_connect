@@ -13,7 +13,8 @@ import SectionContent from '../../components/Section/SectionContent';
 const CentralDoc = ({ cities, specialities }) => {
     const [city, setCity] = useState("");
     const [docSpeciality, setDocSpeciality] = useState("");
-    const [display, setDisplay] = useState(false);
+    const [isSubmitted, setIsSubmitted] = useState(false);
+    console.log(isSubmitted);
 
     // Sets the state with user entered value
     const handleCityInputChange = (event) => {
@@ -27,7 +28,7 @@ const CentralDoc = ({ cities, specialities }) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        setDisplay(true);
+        setIsSubmitted(!isSubmitted);
         console.log("Submit was called");
     }
     
@@ -113,7 +114,7 @@ const CentralDoc = ({ cities, specialities }) => {
                                 </Button>
                             </FormControl>
                             {/* Table to display the available doctors in the selected city and speciality */}
-                            <Box
+                            {isSubmitted && (<Box
                                 marginTop = "2em"
                             >
                                 <Table 
@@ -168,7 +169,7 @@ const CentralDoc = ({ cities, specialities }) => {
                                         </Tr>
                                     </Tbody>
                                 </Table>
-                            </Box>
+                            </Box>)}
                 </SectionContent>
             </Section>
         </>
