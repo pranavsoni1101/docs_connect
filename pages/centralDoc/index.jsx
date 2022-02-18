@@ -9,6 +9,7 @@ import {
         } from '@chakra-ui/react';
 import Section from '../../components/Section'
 import SectionContent from '../../components/Section/SectionContent';
+import axios from 'axios';
 
 const CentralDoc = ({ cities, specialities }) => {
     
@@ -29,8 +30,17 @@ const CentralDoc = ({ cities, specialities }) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        setIsSubmitted(!isSubmitted);
+        getDocs();
+        setIsSubmitted(true);
         console.log("Submit was called");
+    }
+
+    const getDocs = async () => {
+        axios.get(`http://localhost:3000/api/centralDoc/${city}/${docSpeciality}`)
+        .then((data) =>{
+            console.log(data);
+        })
+        .catch((err) => console.log(err))
     }
     
     return(
@@ -47,7 +57,7 @@ const CentralDoc = ({ cities, specialities }) => {
                                 <FormLabel htmlFor='city'>
                                     Enter the City to be searched
                                 </FormLabel>
-                                <Select
+                                <Input 
                                     id           = "city"
                                     type         = "text"
                                     width        = "50%"
@@ -58,21 +68,13 @@ const CentralDoc = ({ cities, specialities }) => {
                                     placeholder  = 'City'
                                     autoComplete = "off"
                                     marginBottom = "1em"
-                                >
-                                    {cities.map( city =>(
-                                        <option
-                                            key= {city._id}
-                                        >
-                                            {city.city}
-                                        </option>
-                                    ))
-                                    }
-                                </Select>
+                                    isRequired
+                                />
                                  {/* To take input of doctors speciality */}
                                  <FormLabel htmlFor='docSpeciality'>
                                     Enter Doctor's Speciality
                                 </FormLabel>
-                                <Select
+                                <Input 
                                     id           = "docSpeciality"
                                     type         = "text"
                                     width        = "50%"
@@ -84,16 +86,7 @@ const CentralDoc = ({ cities, specialities }) => {
                                     autoComplete = "off"
                                     marginBottom = "1em"
                                     isRequired
-                                >
-                                    {specialities.map( speciality =>(
-                                        <option
-                                            key= {speciality._id}
-                                        >
-                                            {speciality.speciality}
-                                        </option>
-                                    ))
-                                    }
-                                </Select>
+                                />
                                 <Button
                                     type        = "submit"
                                     width       = "xs"
@@ -169,14 +162,3 @@ const CentralDoc = ({ cities, specialities }) => {
 }
 
 export default CentralDoc;
-
-export const getServerSideProps = async (context) =>{
-    const cityData = await fetch("http://localhost:3000/api/cities");
-    const cities = await cityData.json();
-    const specialityData = await fetch("http://localhost:3000/api/docSpeciality");
-    const specialities = await specialityData.json(); 
-
-    return {
-        props: { cities, specialities },
-    }
-}
