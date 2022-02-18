@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import {
-         Box, Button, Center, FormControl, 
-         FormLabel, Grid, GridItem, Input, 
-         Select, 
-         Table, TableCaption, Tbody, Td, 
-         Text, Th, Thead, Tr 
+         Box, Button, FormControl, 
+         FormLabel, Input, Table,
+         TableCaption, Tbody, Td, 
+         Th, Thead, Tr 
         } from '@chakra-ui/react';
 import Section from '../../components/Section'
 import SectionContent from '../../components/Section/SectionContent';
 import axios from 'axios';
 
-const CentralDoc = ({ cities, specialities }) => {
+const CentralDoc = () => {
     
     // All the states are defined below
     const [city, setCity] = useState("");
-    const [docSpeciality, setDocSpeciality] = useState("");
+    const [docs, setDocs] = useState([]);
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const [docSpeciality, setDocSpeciality] = useState("");
 
     // Sets the state with user entered value
     const handleCityInputChange = (event) => {
@@ -28,17 +28,18 @@ const CentralDoc = ({ cities, specialities }) => {
         setDocSpeciality(event.target.value);
     }
 
+    // Makes a call to getDocs on submitting the form
     const handleSubmit = (event) => {
         event.preventDefault();
         getDocs();
         setIsSubmitted(true);
-        console.log("Submit was called");
     }
 
+    // Fetches doctor details from the db
     const getDocs = async () => {
         axios.get(`http://localhost:3000/api/centralDoc/${city}/${docSpeciality}`)
         .then((data) =>{
-            console.log(data);
+            setDocs(data.data);
         })
         .catch((err) => console.log(err))
     }
@@ -115,43 +116,20 @@ const CentralDoc = ({ cities, specialities }) => {
                                         </Tr>
                                     </Thead>
                                     <Tbody>
-                                        <Tr>
-                                            <Td>ABXCDDCDC</Td>
-                                            <Td>MBBS</Td>
-                                            <Td>
-                                                <Button
-                                                    variant     = "ghost"
-                                                    colorScheme = "whatsapp" 
-                                                >
-                                                    Google meet
-                                                </Button>
-                                            </Td>
-                                        </Tr>
-                                        <Tr>
-                                            <Td>ABXCDDCDC</Td>
-                                            <Td>MBBS</Td>
-                                            <Td>
-                                                <Button
-                                                    variant     = "ghost"
-                                                    colorScheme = "whatsapp" 
-                                                >
-                                                    Google meet
-                                                </Button>
-                                            </Td>
-                                        </Tr>
-                                        <Tr>
-                                            <Td>ABXCDDCDC</Td>
-                                            <Td>MBBS</Td>
-                                            <Td>
-                                                <Button
-                                                    variant      = "ghost"
-                                                    colorScheme  = "whatsapp" 
-                                                    borderRadius = "md "
-                                                >
-                                                    Google meet
-                                                </Button>
-                                            </Td>
-                                        </Tr>
+                                        {docs.map((doc) => (
+                                            <Tr key={doc._id}>
+                                                <Td>{doc.name}</Td>
+                                                <Td>{doc.qualification}</Td>
+                                                <Td>
+                                                    <Button
+                                                        variant     = "ghost"
+                                                        colorScheme = "whatsapp" 
+                                                    >
+                                                        Google meet
+                                                    </Button>
+                                                </Td>
+                                            </Tr>
+                                        ))}
                                     </Tbody>
                                 </Table>
                             </Box>)}

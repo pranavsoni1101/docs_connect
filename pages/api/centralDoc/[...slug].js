@@ -5,7 +5,6 @@ const handler = async (req, res) => {
   const query = req.query.slug;
   const city = capitalisation(query[0]);
   const speciality = capitalisation(query[1]);
-  console.log(city, speciality);
   const client = await clientPromise;
   const db     = client.db("docsconnect");
   const data   = await db.collection("centralDocs").find({city: city, speciality: speciality}).toArray();
