@@ -44,6 +44,9 @@ const CentralDoc = () => {
         .catch((err) => console.log(err))
     }
     
+    // To disable the submit button incase the form fields are not filled in
+    const disableSubmit = city === "" || docSpeciality === "";
+
     return(
         <>
             <Head>
@@ -54,7 +57,7 @@ const CentralDoc = () => {
             <Section>
                 <SectionContent>
                             {/* To take input of city */}
-                            <FormControl>
+                            <FormControl isRequired>
                                 <FormLabel htmlFor='city'>
                                     Enter the City to be searched
                                 </FormLabel>
@@ -95,6 +98,7 @@ const CentralDoc = () => {
                                     onClick    = {handleSubmit}
                                     colorScheme = "green"
                                     outline     = "none"
+                                    isDisabled = {disableSubmit}
                                 >
                                     Submit
                                 </Button>
