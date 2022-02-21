@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { Box, Button, FormControl, FormLabel, Input, Table, TableCaption, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react';
 import Section from '../../components/Section'
 import SectionContent from '../../components/Section/SectionContent';
 
 const City = () => {
+
+    // All the states are declared below
+    const [docs, setDocs] = useState([]);
     const [village, setVillage] = useState("");
     const [isSubmitted, setIsSubmitted] = useState(false);
-
 
     // Sets the state with user entered value
     const handleVillageInputChange = (event) => {
@@ -15,15 +18,15 @@ const City = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        getDocs();
         setIsSubmitted(true);
-        console.log("Submit was called");
     }
 
     // Fetches doctor details from the db
     const getDocs = async () => {
         axios.get(`http://localhost:3000/api/peripheryDoc/${village}`)
         .then((data) =>{
-            setDocs(data.data);
+            setDocs(data.data)
         })
         .catch((err) => console.log(err))
     }
@@ -78,46 +81,27 @@ const City = () => {
                                         </Tr>
                                     </Thead>
                                     <Tbody>
-                                        <Tr>
-                                            <Td>ABXCDDCDC</Td>
-                                            <Td>MBBS</Td>
-                                            <Td>+91-xxxxx-xxxxx</Td>
-                                            <Td>
-                                                <Button
-                                                    variant     = "ghost"
-                                                    colorScheme = "whatsapp" 
-                                                >
-                                                    Google meet
-                                                </Button>
-                                            </Td>
-                                        </Tr>
-                                        <Tr>
-                                            <Td>ABXCDDCDC</Td>
-                                            <Td>MBBS</Td>
-                                            <Td>+91-xxxxx-xxxxx</Td>
-                                            <Td>
-                                                <Button
-                                                    variant     = "ghost"
-                                                    colorScheme = "whatsapp" 
-                                                >
-                                                    Google meet
-                                                </Button>
-                                            </Td>
-                                        </Tr>
-                                        <Tr>
-                                            <Td>ABXCDDCDC</Td>
-                                            <Td>MBBS</Td>
-                                            <Td>+91-xxxxx-xxxxx</Td>
-                                            <Td>
-                                                <Button
-                                                    variant      = "ghost"
-                                                    colorScheme  = "whatsapp" 
-                                                    borderRadius = "md "
-                                                >
-                                                    Google meet
-                                                </Button>
-                                            </Td>
-                                        </Tr>
+                                        {docs.map(doc => (
+                                            <Tr key={doc._id}>
+                                                <Td textTransform="capitalize">
+                                                    {doc.name}
+                                                </Td>
+                                                <Td textTransform="capitalize">
+                                                    {doc.qualification}
+                                                </Td>
+                                                <Td>
+                                                    +91{doc.phnumber}
+                                                </Td>
+                                                <Td>
+                                                    <Button
+                                                        variant     = "ghost"
+                                                        colorScheme = "whatsapp" 
+                                                    >
+                                                        Google meet
+                                                    </Button>
+                                                </Td>
+                                            </Tr>
+                                        ))} 
                                     </Tbody>
                                 </Table>
                             </Box>)  }  
