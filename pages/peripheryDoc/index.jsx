@@ -5,22 +5,27 @@ import SectionContent from '../../components/Section/SectionContent';
 
 const City = () => {
     const [village, setVillage] = useState("");
-    const [display, setDisplay] = useState(false);
+    const [isSubmitted, setIsSubmitted] = useState(false);
+
 
     // Sets the state with user entered value
-    const handleCityInputChange = (event) => {
+    const handleVillageInputChange = (event) => {
         setVillage(event.target.value);
-    }
-
-    // Sets the docSpeciality state with user entered value
-    const handleDocSpecialityInputChange = (event) => {
-        setDocSpeciality(event.target.value);
     }
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        setDisplay(true);
+        setIsSubmitted(true);
         console.log("Submit was called");
+    }
+
+    // Fetches doctor details from the db
+    const getDocs = async () => {
+        axios.get(`http://localhost:3000/api/peripheryDoc/${village}`)
+        .then((data) =>{
+            setDocs(data.data);
+        })
+        .catch((err) => console.log(err))
     }
 
     return(
@@ -38,7 +43,7 @@ const City = () => {
                                     type         = "text"
                                     width        = "50%"
                                     value        = {village}
-                                    onChange     = {handleCityInputChange}
+                                    onChange     = {handleVillageInputChange}
                                     marginTop    = "4px"
                                     placeholder  = 'Village'
                                     autoComplete = "off"
@@ -56,7 +61,7 @@ const City = () => {
                                 </Button>
                             </FormControl>
                             {/* Table to display the available doctors in the selected village and speciality */}
-                            <Box
+                            { isSubmitted && (<Box
                                 marginTop = "2em"
                             >
                                 <Table 
@@ -115,7 +120,7 @@ const City = () => {
                                         </Tr>
                                     </Tbody>
                                 </Table>
-                            </Box>    
+                            </Box>)  }  
                 </SectionContent>
             </Section>
         </>
