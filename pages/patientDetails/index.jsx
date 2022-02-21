@@ -3,6 +3,7 @@ import { FormControl, FormLabel, Input, Button, Grid, GridItem, Heading, RadioGr
 import Section from '../../components/Section';
 import SectionContent from '../../components/Section/SectionContent';
 import { useState } from 'react/cjs/react.development';
+import axios from 'axios';
 
 const Patient = () => {
 
@@ -22,6 +23,13 @@ const Patient = () => {
             ...patientInfo,
             [event.target.name] : event.target.value
         })
+    }
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        axios.post("http://localhost:3000/api/patientDetails", {patientInfo})
+        .then(response => console.log(response))
+        .catch(err => console.log(err))
     }
 
     return(
@@ -175,6 +183,8 @@ const Patient = () => {
                                 colSpan={4}
                             >
                                 <Button
+                                    type        = 'submit'
+                                    onClick     = {handleSubmit}
                                     colorScheme = "green"
                                     width       = "100%"
                                 >
