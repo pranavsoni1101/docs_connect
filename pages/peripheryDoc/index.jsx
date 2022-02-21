@@ -4,7 +4,7 @@ import { Box, Button, FormControl, FormLabel, Input, Table, TableCaption, Tbody,
 import Section from '../../components/Section'
 import SectionContent from '../../components/Section/SectionContent';
 
-const City = () => {
+const peripheryDoc = () => {
 
     // All the states are declared below
     const [docs, setDocs] = useState([]);
@@ -31,18 +31,19 @@ const City = () => {
         .catch((err) => console.log(err))
     }
 
+    const isError = village === "" ? true : false;
+
     return(
         <>
             <Section>
                 <SectionContent>
                             {/* To take input of city */}
-                            <FormControl>
+                            <FormControl isRequired>
                                 <FormLabel htmlFor='village'>
                                     Enter the village to be searched
                                 </FormLabel>
                                 <Input 
                                     id           = "village"
-                                    // name         = "village"
                                     type         = "text"
                                     width        = "50%"
                                     value        = {village}
@@ -55,10 +56,11 @@ const City = () => {
                                 <Button
                                     type        = "submit"
                                     width       = "xs"
-                                    display     = "block"
-                                    onClick    = {handleSubmit}
-                                    colorScheme = "green"
                                     outline     = "none"
+                                    display     = "block"
+                                    onClick     = {handleSubmit}
+                                    isDisabled  = {isError}
+                                    colorScheme = "green"
                                 >
                                     Submit
                                 </Button>
@@ -111,4 +113,4 @@ const City = () => {
     )
 }
 
-export default City;
+export default peripheryDoc;
