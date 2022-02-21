@@ -11,7 +11,7 @@ const Patient = () => {
         firstName: "",
         lastName: "",
         age: "",
-        sex: "M",
+        sex: "Male",
         complaint: "",
         medicalHist: "",
         surgicalHist: "",
@@ -25,9 +25,29 @@ const Patient = () => {
         })
     }
 
+    const isRadioSelected = (value) =>{
+        return patientInfo.sex === value;
+    }
+
+    const handleRadioClick = (event) => {
+        setPatientInfo({
+            ...patientInfo,
+            sex: event.currentTarget.value
+        })
+    }
+
     const handleSubmit = (event) => {
         event.preventDefault();
-        axios.post("http://localhost:3000/api/patientDetails", {patientInfo})
+        axios.post("http://localhost:3000/api/patientDetails", {
+            firstName: patientInfo.firstName,
+            lastName: patientInfo.lastName,
+            age: patientInfo.age,
+            sex: patientInfo.sex,
+            complaint: patientInfo.complaint,
+            medicalHist: patientInfo.medicalHist,
+            surgicalHist: patientInfo.surgicalHist,
+            menstrualPeriod: patientInfo.menstrualPeriod,
+        })
         .then(response => console.log(response))
         .catch(err => console.log(err))
     }
@@ -112,14 +132,24 @@ const Patient = () => {
                                 </FormLabel>
                                 {/* State needs to be worked upon */}
                                 <RadioGroup
-                                    id       = 'sex'
-                                    name     = 'sex'
-                                    value    = {patientInfo.sex}
-                                    onChange = {handleChange}
                                 >
                                     <HStack spacing= "12px">
-                                        <Radio value = {"M"}>Male</Radio>
-                                        <Radio value = {"F"} >Female</Radio>
+                                        <Radio 
+                                            name     = "sex"
+                                            value    = "Male"
+                                            checked  = {isRadioSelected("Male")}
+                                            onChange = {handleRadioClick}
+                                        >
+                                            Male
+                                        </Radio>
+                                        <Radio 
+                                            name     = "sex"
+                                            value    = "Female"
+                                            checked  = {isRadioSelected("Female")}
+                                            onChange = {handleRadioClick}
+                                        >
+                                            Female
+                                        </Radio>
                                     </HStack>
                                 </RadioGroup>
                             </GridItem>
