@@ -13,7 +13,7 @@ const handler = async (req, res) => {
     const result = await collection.insertOne(data);
 
     console.log(result);
-    res.status(201).json({message: "Data inserted successfully"})
+    // res.status(201).json({message: "Data inserted successfully"})
     }
 
   res.json(patients);

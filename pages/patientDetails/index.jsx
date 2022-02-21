@@ -1,5 +1,9 @@
 import React from 'react';
-import { FormControl, FormLabel, Input, Button, Grid, GridItem, Heading, RadioGroup, Radio, HStack, Textarea } from '@chakra-ui/react';
+import { FormControl, FormLabel, Input, 
+         Button, Grid, GridItem, 
+         Heading, RadioGroup, Radio, 
+         HStack, Textarea, useToast 
+        } from '@chakra-ui/react';
 import Section from '../../components/Section';
 import SectionContent from '../../components/Section/SectionContent';
 import { useState } from 'react/cjs/react.development';
@@ -7,16 +11,19 @@ import axios from 'axios';
 
 const Patient = () => {
 
+    // patient details
     const [patientInfo, setPatientInfo] = useState({
         firstName: "",
         lastName: "",
         age: "",
-        sex: "Male",
+        sex: "",
         complaint: "",
         medicalHist: "",
         surgicalHist: "",
         menstrualPeriod: "",
     })
+
+    const toast = useToast();
 
     const handleChange = (event) => {
         setPatientInfo({
@@ -48,8 +55,38 @@ const Patient = () => {
             surgicalHist: patientInfo.surgicalHist,
             menstrualPeriod: patientInfo.menstrualPeriod,
         })
-        .then(response => console.log(response))
-        .catch(err => console.log(err))
+        .then(response => {
+                toast({
+                    title: "Patient Record Saved Successfully",
+                    description: `${patientInfo.firstName}'s record has been saved!`,
+                    status: "success",
+                    duration: 5000,
+                    isClosable: true,
+                    position: "bottom",
+                    variant: "left-accent"
+                });
+                setPatientInfo({
+                    firstName: "",
+                    lastName: "",
+                    age: "",
+                    sex: "Male",
+                    complaint: "",
+                    medicalHist: "",
+                    surgicalHist: "",
+                    menstrualPeriod: "",
+                })
+            })
+        .catch(err => 
+            toast({
+                title: "Oops Error Saving Data",
+                description: `Patient data could not be saved, Please try agin later`,
+                status: "error",
+                duration: 5000,
+                isClosable: true,
+                position: "bottom",
+                variant: "left-accent"
+            })
+            )
     }
 
     return(
