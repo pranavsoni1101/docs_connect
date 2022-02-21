@@ -1,8 +1,9 @@
 import {
     Box, Flex, Heading, HStack,
     useDisclosure,Image, IconButton,
-    Button, Stack
+    Button, Stack, Menu, MenuList, MenuItem, MenuButton
 } from '@chakra-ui/react';
+import {IoMdArrowDropdown} from "react-icons/io"
 import NextLink from 'next/link';
 import { IoMenuOutline, IoCloseOutline } from 'react-icons/io5';
 
@@ -87,21 +88,30 @@ const NavLinks = () => {
                     Home
                 </span>
             </NavLink>
-            <NavLink to="/events">
+            <NavLink to="/peripheryDoc">
                 <span>
-                    About
+                    PeripheryDoc
                 </span>
             </NavLink>
-            <NavLink to="/membership">
+            <NavLink to="/centralDoc">
                 <span>
-                    Membership
+                    CentralDoc
                 </span>
             </NavLink>
-            <NavLink to="/team">
-                <span>
-                    Team
-                </span>
-            </NavLink>    
+            <Menu isLazy>
+                <MenuButton
+                    size          = "md"
+                    // fontWeight    = "bold"
+                    color         = "brand1.500"
+                    cursor        = "pointer"
+                    textTransform = "uppercase"
+                >
+                    Profile
+                </MenuButton>
+                <MenuList>
+                    <MenuItem>Log Out</MenuItem>
+                </MenuList>
+            </Menu>   
         </>
     )
 }

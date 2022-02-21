@@ -115,6 +115,7 @@ const Patient = () => {
                                     name          = "firstName"
                                     type          = "text"
                                     value         = {patientInfo.firstName}
+                                    variant       = "filled"
                                     onChange      = {handleChange}
                                     marginTop     = "4px"
                                     placeholder   = 'First Name'
@@ -134,6 +135,7 @@ const Patient = () => {
                                     name          = "lastName"
                                     type          = "text"
                                     value         = {patientInfo.lastName}
+                                    variant       = "filled"
                                     onChange      = {handleChange}
                                     marginTop     = "4px"
                                     placeholder   = 'Last Name'
@@ -153,6 +155,7 @@ const Patient = () => {
                                     name          = "age"
                                     type          = "text"
                                     value         = {patientInfo.age}
+                                    variant       = "filled"
                                     onChange      = {handleChange}
                                     marginTop     = "4px"
                                     placeholder   = 'Age'
@@ -197,10 +200,11 @@ const Patient = () => {
                                     Chief Compalaint
                                 </FormLabel>
                                 <Textarea 
-                                    id    = 'chief-complaint'
-                                    name  = 'complaint'
-                                    value ={patientInfo.complaint}
-                                    onChange={handleChange}
+                                    id          = 'chief-complaint'
+                                    name        = 'complaint'
+                                    value       = {patientInfo.complaint}
+                                    variant     = "filled"
+                                    onChange    = {handleChange}
                                     placeholder = "What is the patient's chief complaint? "
                                 />
                             </GridItem>
@@ -211,10 +215,11 @@ const Patient = () => {
                                     Medical History
                                 </FormLabel>
                                 <Textarea 
-                                    id    = 'medical-history'
-                                    name  = 'medicalHist'
-                                    value ={patientInfo.medicalHist}
-                                    onChange={handleChange}
+                                    id          = 'medical-history'
+                                    name        = 'medicalHist'
+                                    value       = {patientInfo.medicalHist}
+                                    variant     = "filled"
+                                    onChange    = {handleChange}
                                     placeholder = "Patient's medical history, if any... "
                                 />
                             </GridItem>
@@ -225,10 +230,11 @@ const Patient = () => {
                                     Surgical History
                                 </FormLabel>
                                 <Textarea 
-                                    id    = 'surgical-history'
-                                    name  = 'surgicalHist'
-                                    value ={patientInfo.surgicalHist}
-                                    onChange={handleChange}
+                                    id          = 'surgical-history'
+                                    name        = 'surgicalHist'
+                                    value       = {patientInfo.surgicalHist}
+                                    variant     = "filled"
+                                    onChange    = {handleChange}
                                     placeholder = "Patient's surgical history, if any..."
                                 />
                             </GridItem>
@@ -239,10 +245,11 @@ const Patient = () => {
                                     Menstrual Period
                                 </FormLabel>
                                 <Textarea 
-                                    id    = 'menstrual-period'
-                                    name  = 'menstrualPeriod'
-                                    value ={patientInfo.menstrualPeriod}
-                                    onChange={handleChange}
+                                    id          = 'menstrual-period'
+                                    name        = 'menstrualPeriod'
+                                    value       = {patientInfo.menstrualPeriod}
+                                    variant     = "filled"
+                                    onChange    = {handleChange}
                                     placeholder = "Patient's medical history, if any..."
                                 />
                             </GridItem>

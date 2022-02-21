@@ -46,6 +46,7 @@ const peripheryDoc = () => {
                                     type         = "text"
                                     width        = "50%"
                                     value        = {village}
+                                    variant      = "filled"
                                     onChange     = {handleVillageInputChange}
                                     marginTop    = "4px"
                                     placeholder  = 'Village'
