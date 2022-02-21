@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Box, Button, FormControl, FormLabel, Input, Table, TableCaption, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react';
+import { Box, Button, FormControl, FormLabel, Input, Skeleton, Stack, Table, TableCaption, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react';
 import Section from '../../components/Section'
 import SectionContent from '../../components/Section/SectionContent';
 
@@ -10,7 +10,6 @@ const peripheryDoc = () => {
     const [docs, setDocs] = useState([]);
     const [village, setVillage] = useState("");
     const [isSubmitted, setIsSubmitted] = useState(false);
-
     // Sets the state with user entered value
     const handleVillageInputChange = (event) => {
         setVillage(event.target.value);
@@ -66,47 +65,51 @@ const peripheryDoc = () => {
                                 </Button>
                             </FormControl>
                             {/* Table to display the available doctors in the selected village and speciality */}
-                            { isSubmitted && (<Box
-                                marginTop = "2em"
-                            >
-                                <Table 
-                                    variant     = "striped"
-                                    marginY     = "2em"
-                                >
-                                    <TableCaption>Showing results for doctors in {village}</TableCaption>
-                                    <Thead>
-                                        <Tr>
-                                            <Th>Name</Th>
-                                            <Th>Qualification</Th>
-                                            <Th>Contact Number</Th>
-                                            <Th>E-Consultation</Th>
-                                        </Tr>
-                                    </Thead>
-                                    <Tbody>
-                                        {docs.map(doc => (
-                                            <Tr key={doc._id}>
-                                                <Td textTransform="capitalize">
-                                                    {doc.name}
-                                                </Td>
-                                                <Td textTransform="capitalize">
-                                                    {doc.qualification}
-                                                </Td>
-                                                <Td>
-                                                    +91{doc.phnumber}
-                                                </Td>
-                                                <Td>
-                                                    <Button
-                                                        variant     = "ghost"
-                                                        colorScheme = "whatsapp" 
-                                                    >
-                                                        Google meet
-                                                    </Button>
-                                                </Td>
-                                            </Tr>
-                                        ))} 
-                                    </Tbody>
-                                </Table>
-                            </Box>)  }  
+                            { isSubmitted && 
+                                (
+                                    <Box
+                                        marginTop = "2em"
+                                    >
+                                        <Table 
+                                            variant     = "striped"
+                                            marginY     = "2em"
+                                        >
+                                            <TableCaption>Showing results for doctors in {village}</TableCaption>
+                                            <Thead>
+                                                <Tr>
+                                                    <Th>Name</Th>
+                                                    <Th>Qualification</Th>
+                                                    <Th>Contact Number</Th>
+                                                    <Th>E-Consultation</Th>
+                                                </Tr>
+                                            </Thead>
+                                            <Tbody>
+                                                {docs.map(doc => (
+                                                    <Tr key={doc._id}>
+                                                        <Td textTransform="capitalize">
+                                                            {doc.name}
+                                                        </Td>
+                                                        <Td textTransform="capitalize">
+                                                            {doc.qualification}
+                                                        </Td>
+                                                        <Td>
+                                                            +91{doc.phnumber}
+                                                        </Td>
+                                                        <Td>
+                                                            <Button
+                                                                variant     = "ghost"
+                                                                colorScheme = "whatsapp" 
+                                                            >
+                                                                Google meet
+                                                            </Button>
+                                                        </Td>
+                                                    </Tr>
+                                                ))} 
+                                            </Tbody>
+                                        </Table>
+                                    </Box>
+                                )  
+                            }  
                 </SectionContent>
             </Section>
         </>
