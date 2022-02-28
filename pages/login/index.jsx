@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { Box, Center, FormControl, 
          FormLabel, Heading, Input,
-         InputGroup, InputRightElement, Button,
-    } from "@chakra-ui/react";
+         InputGroup, InputRightElement, Button, 
+         VStack, Text
+} from "@chakra-ui/react";
+import { FcGoogle } from "react-icons/fc";
+import { FaFacebookF } from "react-icons/fa";
 import Section from '../../components/Section';
 import SectionContent from '../../components/Section/SectionContent';
 
@@ -40,6 +43,7 @@ const LogIn = () => {
                         >
                             <Heading
                                 size         = "lg"
+                                color        = "brand1.500"
                                 textAlign    = "center"
                                 marginBottom = "1em"
                             >
@@ -80,13 +84,52 @@ const LogIn = () => {
                                 </InputRightElement>
                                 </InputGroup>
                                 <Button
-                                    type        = "submit"
-                                    width       = "sm"
-                                    colorScheme = "green"
+                                    type         = "submit"
+                                    width        = "sm"
+                                    colorScheme  = "green"
                                 >
                                     Submit
                                 </Button>
                             </FormControl>
+                            <Box
+                                textAlign="center"
+                                color = "#00000070"
+                                marginY= "1em"
+                            >
+                                OR
+                            </Box>
+                            <VStack
+                                spacing={4}
+                            >
+                                <Button
+                                    fontSize= "1.5em"
+                                    width= "sm"
+                                >
+                                    <FcGoogle />
+                                </Button>
+                                <Button
+                                    fontSize= "1.5em"
+                                    width= "sm"
+                                    colorScheme= "facebook"
+                                >
+                                    <FaFacebookF />
+                                </Button>
+                            </VStack>
+                            <Box
+                                marginTop = "1em"
+                                textAlign = "center"
+                            >
+                                    Don't have an account? 
+                                    <Text
+                                        as         = "a"
+                                        color      = "blue.800"
+                                        textDecoration= "underline"
+                                        href       = "/signup"
+                                        marginLeft = "4px"
+                                    >
+                                        Sign Up
+                                    </Text>
+                            </Box>
                         </Box>
                     </Center>
                 </SectionContent>
