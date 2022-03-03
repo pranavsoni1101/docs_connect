@@ -2,26 +2,31 @@ import { useState } from "react";
 import { Box, Center, FormControl, 
          FormLabel, Heading, Input,
          InputGroup, InputRightElement, Button, 
-         VStack, Text
+         VStack, Text, HStack
 } from "@chakra-ui/react";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebookF } from "react-icons/fa";
 import Section from '../../components/Section';
 import SectionContent from '../../components/Section/SectionContent';
 
-const DoctorDetails = ({nextStep, state, handleInputChange}) => {
+const DoctorDetails = ({nextStep, state, prevStep,handleInputChange}) => {
 
     const Next = (event) => {
         event.preventDefault()
         nextStep();
     }
-
+    
+    const Previous = (event) => {
+        event.preventDefault();
+        prevStep();
+    } 
     return(
         <>
             <Section>
                 <SectionContent>
                     <Center>
                         <Box
+                            width        = "md"
                             padding      = "1em"
                             boxShadow    = "md"
                             borderRadius = "lg"
@@ -64,42 +69,31 @@ const DoctorDetails = ({nextStep, state, handleInputChange}) => {
                                     id           = "specialization"
                                     name         = "specialization"
                                     type         = "text"
-                                    value        = {state.email}
+                                    value        = {state.specialization}
                                     variant      = "filled"                                    
                                     onChange     = {handleInputChange}
                                     placeholder  = 'Enter specialization'
                                     autoComplete = "off"
                                     marginBottom = "1em"
                                 />
-                                <FormLabel htmlFor="password">Password</FormLabel>
-                                <InputGroup>
-                                    <Input
-                                        id           = "password"
-                                        // type         = {inputType}
-                                        name         = "password"
-                                        value        = {state.password}
-                                        variant      = "filled"                                    
-                                        onChange     = {handleInputChange}
-                                        placeholder  = 'Enter password'
-                                        marginBottom = "1em"
-                                    />
-                                    <InputRightElement width='4.5rem'>
-                                        <Button 
-                                            size    = 'xs' 
-                                            // onClick = {handlePasswordShow}
-                                        >
-                                            {state.show ? 'Hide' : 'Show'}
-                                        </Button>
-                                    </InputRightElement>
-                                </InputGroup>
-                                <Button
-                                    type         = "submit"
-                                    width        = "sm"
-                                    onClick      = {Next}
-                                    colorScheme  = "green"
-                                >
-                                    Next
-                                </Button>
+                                <HStack>
+                                    <Button
+                                        type         = "submit"
+                                        width        = "100%"
+                                        onClick      = {Previous}
+                                        colorScheme  = "green"
+                                    >
+                                        Previous
+                                    </Button>
+                                    <Button
+                                        type         = "submit"
+                                        width        = "100%"
+                                        onClick      = {Next}
+                                        colorScheme  = "green"
+                                    >
+                                        Next
+                                    </Button>
+                                </HStack>
                             </FormControl>
                             <Box
                                 marginTop = "1em"

@@ -1,15 +1,18 @@
 
 import { useState } from 'react';
 import DoctorDetails from '../../components/SignUp/DoctorDetails';
+import UserDetails from '../../components/SignUp/UserDetails';
 
 const LogIn = () => {
 
     const [step, setStep] = useState(0);
     const [state, setState] = useState({
         name: "",
+        email: "",
+        password: "",
+        repassword: "",
         qualification: "",
         specialization: "",
-        password: "",
         show: false,
     });
 
@@ -38,13 +41,20 @@ const LogIn = () => {
     
     const renderFormStep = 
                             step === 0 ? 
+                                <UserDetails 
+                                    state              = {state}
+                                    nextStep           = {nextStep}
+                                    inputType          = {inputType}
+                                    handleInputChange  = {handleInputChange}
+                                    handlePasswordShow = {handlePasswordShow}
+                                />
+                                : step === 1 ?
                                 <DoctorDetails 
                                     state             = {state}
-                                    nextStep    =   {nextStep}
+                                    prevStep          = {prevStep}
+                                    nextStep          = {nextStep}
                                     handleInputChange = {handleInputChange}
                                 />
-                            : step === 1 ?
-                                <h1>HHHIHHIHIH</h1>
                             :
                                 <h1>HihgihgigoygoiygHHIHHIHIH</h1>
                                  
