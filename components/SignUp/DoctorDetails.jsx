@@ -37,7 +37,7 @@ const DoctorDetails = ({nextStep, state, prevStep,handleInputChange}) => {
                                 textAlign    = "center"
                                 marginBottom = "1em"
                             >
-                               doc details
+                               Personal Details
                             </Heading>
                             <FormControl>
                             <FormLabel htmlFor="name">Name</FormLabel>

@@ -31,7 +31,7 @@ const UserDetails = ({state, nextStep, handleInputChange, inputType, handlePassw
                                 textAlign    = "center"
                                 marginBottom = "1em"
                             >
-                               doc details
+                               User Details
                             </Heading>
                             <FormControl>
                                 <FormLabel htmlFor="email">Email</FormLabel>
