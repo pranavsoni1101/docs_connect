@@ -9,29 +9,12 @@ import { FaFacebookF } from "react-icons/fa";
 import Section from '../../components/Section';
 import SectionContent from '../../components/Section/SectionContent';
 
-const DoctorDetails = () => {
+const DoctorDetails = ({nextStep, state, handleInputChange}) => {
 
-    const [state, setState] = useState({
-        name: "",
-        city: "",
-        email: "",
-        password: "",
-        show: false
-    });
-
-    const handleInputChange = (event) => {
-        setState({
-            ...state,
-            [event.target.name]: event.target.value
-        })
-    };
-
-    const handlePasswordShow = () => setState({
-        ...state, 
-        show: !state.show
-    })
-
-    const inputType = state.show ? 'text' : 'password';
+    const Next = (event) => {
+        event.preventDefault()
+        nextStep();
+    }
 
     return(
         <>
@@ -64,27 +47,27 @@ const DoctorDetails = () => {
                                     autoComplete = "off"
                                     marginBottom = "1em"
                                 />
-                                <FormLabel htmlFor="city">City</FormLabel>
+                                <FormLabel htmlFor="qualification">Qualification</FormLabel>
                                 <Input 
-                                    id           = "city"
-                                    name         = "city"
+                                    id           = "qualification"
+                                    name         = "qualification"
                                     type         = "text"
-                                    value        = {state.city}
+                                    value        = {state.qualification}
                                     variant      = "filled"                                    
                                     onChange     = {handleInputChange}
-                                    placeholder  = 'City'
+                                    placeholder  = 'Qualification'
                                     autoComplete = "off"
                                     marginBottom = "1em"
                                 />
-                                <FormLabel htmlFor="email">Email</FormLabel>
+                                <FormLabel htmlFor="specialization">Specialization</FormLabel>
                                 <Input 
-                                    id           = "email"
-                                    name         = "email"
-                                    type         = "email"
+                                    id           = "specialization"
+                                    name         = "specialization"
+                                    type         = "text"
                                     value        = {state.email}
                                     variant      = "filled"                                    
                                     onChange     = {handleInputChange}
-                                    placeholder  = 'Enter email'
+                                    placeholder  = 'Enter specialization'
                                     autoComplete = "off"
                                     marginBottom = "1em"
                                 />
@@ -92,7 +75,7 @@ const DoctorDetails = () => {
                                 <InputGroup>
                                     <Input
                                         id           = "password"
-                                        type         = {inputType}
+                                        // type         = {inputType}
                                         name         = "password"
                                         value        = {state.password}
                                         variant      = "filled"                                    
@@ -103,7 +86,7 @@ const DoctorDetails = () => {
                                     <InputRightElement width='4.5rem'>
                                         <Button 
                                             size    = 'xs' 
-                                            onClick = {handlePasswordShow}
+                                            // onClick = {handlePasswordShow}
                                         >
                                             {state.show ? 'Hide' : 'Show'}
                                         </Button>
@@ -112,35 +95,12 @@ const DoctorDetails = () => {
                                 <Button
                                     type         = "submit"
                                     width        = "sm"
+                                    onClick      = {Next}
                                     colorScheme  = "green"
                                 >
-                                    Submit
+                                    Next
                                 </Button>
                             </FormControl>
-                            <Box
-                                textAlign="center"
-                                color = "#00000070"
-                                marginY= "1em"
-                            >
-                                OR
-                            </Box>
-                            <VStack
-                                spacing={4}
-                            >
-                                <Button
-                                    fontSize= "1.5em"
-                                    width= "sm"
-                                >
-                                    <FcGoogle />
-                                </Button>
-                                <Button
-                                    fontSize= "1.5em"
-                                    width= "sm"
-                                    colorScheme= "facebook"
-                                >
-                                    <FaFacebookF />
-                                </Button>
-                            </VStack>
                             <Box
                                 marginTop = "1em"
                                 textAlign = "center"
