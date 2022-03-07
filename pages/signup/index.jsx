@@ -1,7 +1,8 @@
 
 import { useState } from 'react';
-import DoctorDetails from '../../components/SignUp/DoctorDetails';
+import ReviewInfo from '../../components/SignUp/ReviewInfo';
 import UserDetails from '../../components/SignUp/UserDetails';
+import DoctorDetails from '../../components/SignUp/DoctorDetails';
 
 const LogIn = () => {
 
@@ -19,23 +20,28 @@ const LogIn = () => {
     const prevStep = () => {
         if(step !== 0)
             setStep(step - 1);
-    }
+    };
 
     const nextStep = () => {
         setStep(step + 1);
-    }
+    };
 
     const handleInputChange = (event) => {
         setState({
             ...state,
             [event.target.name]: event.target.value
         })
-    }
+    };
 
     const handlePasswordShow = () => setState({
         ...state, 
         show: !state.show
-    })
+    });
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        console.log("Submit called babe");
+    }
 
     const inputType = state.show ? 'text' : 'password';
     
@@ -56,7 +62,11 @@ const LogIn = () => {
                                     handleInputChange = {handleInputChange}
                                 />
                             :
-                                <h1>HihgihgigoygoiygHHIHHIHIH</h1>
+                                <ReviewInfo 
+                                    state        = {state}
+                                    prevStep     = {prevStep}
+                                    handleSubmit = {handleSubmit}
+                                />
                                  
     return(
         <>
