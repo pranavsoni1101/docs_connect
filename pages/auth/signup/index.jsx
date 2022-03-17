@@ -1,8 +1,8 @@
 
 import { useState } from 'react';
-import ReviewInfo from '../../components/SignUp/ReviewInfo';
-import UserDetails from '../../components/SignUp/UserDetails';
-import DoctorDetails from '../../components/SignUp/DoctorDetails';
+import ReviewInfo from '../../../components/SignUp/ReviewInfo';
+import UserDetails from '../../../components/SignUp/UserDetails';
+import DoctorDetails from '../../../components/SignUp/DoctorDetails';
 
 const LogIn = () => {
 

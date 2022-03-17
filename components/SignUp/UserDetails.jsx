@@ -4,6 +4,7 @@ import { Center, Box, Heading,
          InputGroup, InputRightElement, Button,
          Text 
     } from '@chakra-ui/react';
+import Link from 'next/link'; 
 import Section from '../Section';
 import SectionContent from '../Section/SectionContent';
 
@@ -93,13 +94,13 @@ const UserDetails = ({state, nextStep, handleInputChange, inputType, handlePassw
                             >
                                     Already have an account? 
                                     <Text
-                                        as         = "a"
+                                        as         = {Link}
                                         color      = "blue.800"
                                         textDecoration= "underline"
-                                        href       = "/login"
+                                        href       = "/auth/signin"
                                         marginLeft = "4px"
                                     >
-                                        Log in
+                                        Sign in
                                     </Text>
                             </Box>
                         </Box>

@@ -8,6 +8,7 @@ import { FcGoogle } from "react-icons/fc";
 import { FaFacebookF } from "react-icons/fa";
 import Section from '../../components/Section';
 import SectionContent from '../../components/Section/SectionContent';
+import Link from "next/link";
 
 const DoctorDetails = ({nextStep, state, prevStep,handleInputChange}) => {
 
@@ -101,13 +102,13 @@ const DoctorDetails = ({nextStep, state, prevStep,handleInputChange}) => {
                             >
                                     Already have an account? 
                                     <Text
-                                        as         = "a"
+                                        as         = {Link}
                                         color      = "blue.800"
                                         textDecoration= "underline"
-                                        href       = "/login"
+                                        href       = "/auth/signin"
                                         marginLeft = "4px"
                                     >
-                                        Log in
+                                        Sign in
                                     </Text>
                             </Box>
                         </Box>
