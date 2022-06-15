@@ -111,6 +111,16 @@ const NavLinks = () => {
                 <MenuList>
                     <MenuItem>Log Out</MenuItem>
                 </MenuList>
+                <NavLink to="/auth/signin">
+                <span>
+                    Sign In
+                </span>
+            </NavLink>
+            <NavLink to="/auth/signup">
+                <span>
+                    Sign up
+                </span>
+            </NavLink>
             </Menu>   
         </>
     )
