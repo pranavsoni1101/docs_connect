@@ -34,60 +34,62 @@ const UserDetails = ({state, nextStep, handleInputChange, inputType, handlePassw
                             >
                                User Details
                             </Heading>
-                            <FormControl>
-                                <FormLabel htmlFor="email">Email</FormLabel>
-                                <Input 
-                                    id           = "email"
-                                    name         = "email"
-                                    type         = "email"
-                                    value        = {state.email}
-                                    variant      = "filled"                                    
-                                    onChange     = {handleInputChange}
-                                    placeholder  = 'Enter email'
-                                    autoComplete = "off"
-                                    marginBottom = "1em"
-                                />
-                               <FormLabel htmlFor="password">Password</FormLabel>
-                                <InputGroup>
-                                    <Input
-                                        id           = "password"
-                                        type         = {inputType}
-                                        name         = "password"
-                                        value        = {state.password}
+                            <form>
+                                <FormControl>
+                                    <FormLabel htmlFor="email">Email</FormLabel>
+                                    <Input 
+                                        id           = "email"
+                                        name         = "email"
+                                        type         = "email"
+                                        value        = {state.email}
                                         variant      = "filled"                                    
                                         onChange     = {handleInputChange}
-                                        placeholder  = 'Enter password'
+                                        placeholder  = 'Enter email'
+                                        autoComplete = "off"
                                         marginBottom = "1em"
                                     />
-                                    <InputRightElement width='4.5rem'>
-                                        <Button 
-                                            size    = 'xs' 
-                                            onClick = {handlePasswordShow}
-                                        >
-                                            {state.show ? 'Hide' : 'Show'}
-                                        </Button>
-                                    </InputRightElement>
-                                </InputGroup>
-                                <FormLabel htmlFor="repassword">Repeat Password</FormLabel>
-                                <Input
-                                    id           = "repassword"
-                                    type         = "password"
-                                    name         = "repassword"
-                                    value        = {state.repassword}
-                                    variant      = "filled"                                    
-                                    onChange     = {handleInputChange}
-                                    placeholder  = 'Re-enter password'
-                                    marginBottom = "1em"
-                                />
-                                <Button
-                                    type         = "submit"
-                                    width        = "100%"
-                                    onClick      = {Next}
-                                    colorScheme  = "green"
-                                >
-                                    Next
-                                </Button>
-                            </FormControl>
+                                <FormLabel htmlFor="password">Password</FormLabel>
+                                    <InputGroup>
+                                        <Input
+                                            id           = "password"
+                                            type         = {inputType}
+                                            name         = "password"
+                                            value        = {state.password}
+                                            variant      = "filled"                                    
+                                            onChange     = {handleInputChange}
+                                            placeholder  = 'Enter password'
+                                            marginBottom = "1em"
+                                        />
+                                        <InputRightElement width='4.5rem'>
+                                            <Button 
+                                                size    = 'xs' 
+                                                onClick = {handlePasswordShow}
+                                            >
+                                                {state.show ? 'Hide' : 'Show'}
+                                            </Button>
+                                        </InputRightElement>
+                                    </InputGroup>
+                                    <FormLabel htmlFor="repassword">Repeat Password</FormLabel>
+                                    <Input
+                                        id           = "repassword"
+                                        type         = "password"
+                                        name         = "repassword"
+                                        value        = {state.repassword}
+                                        variant      = "filled"                                    
+                                        onChange     = {handleInputChange}
+                                        placeholder  = 'Re-enter password'
+                                        marginBottom = "1em"
+                                    />
+                                    <Button
+                                        type         = "submit"
+                                        width        = "100%"
+                                        onClick      = {Next}
+                                        colorScheme  = "green"
+                                    >
+                                        Next
+                                    </Button>
+                                </FormControl>
+                            </form>
                             <Box
                                 marginTop = "1em"
                                 textAlign = "center"

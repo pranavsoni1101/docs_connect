@@ -40,62 +40,64 @@ const DoctorDetails = ({nextStep, state, prevStep,handleInputChange}) => {
                             >
                                Personal Details
                             </Heading>
-                            <FormControl>
-                            <FormLabel htmlFor="name">Name</FormLabel>
-                                <Input 
-                                    id           = "name"
-                                    name         = "name"
-                                    type         = "text"
-                                    value        = {state.name}
-                                    variant      = "filled"                                    
-                                    onChange     = {handleInputChange}
-                                    placeholder  = 'Enter your full name'
-                                    autoComplete = "off"
-                                    marginBottom = "1em"
-                                />
-                                <FormLabel htmlFor="qualification">Qualification</FormLabel>
-                                <Input 
-                                    id           = "qualification"
-                                    name         = "qualification"
-                                    type         = "text"
-                                    value        = {state.qualification}
-                                    variant      = "filled"                                    
-                                    onChange     = {handleInputChange}
-                                    placeholder  = 'Qualification'
-                                    autoComplete = "off"
-                                    marginBottom = "1em"
-                                />
-                                <FormLabel htmlFor="specialization">Specialization</FormLabel>
-                                <Input 
-                                    id           = "specialization"
-                                    name         = "specialization"
-                                    type         = "text"
-                                    value        = {state.specialization}
-                                    variant      = "filled"                                    
-                                    onChange     = {handleInputChange}
-                                    placeholder  = 'Enter specialization'
-                                    autoComplete = "off"
-                                    marginBottom = "1em"
-                                />
-                                <HStack>
-                                    <Button
-                                        type         = "submit"
-                                        width        = "100%"
-                                        onClick      = {Previous}
-                                        colorScheme  = "green"
-                                    >
-                                        Previous
-                                    </Button>
-                                    <Button
-                                        type         = "submit"
-                                        width        = "100%"
-                                        onClick      = {Next}
-                                        colorScheme  = "green"
-                                    >
-                                        Next
-                                    </Button>
-                                </HStack>
-                            </FormControl>
+                            <form>
+                                <FormControl>
+                                <FormLabel htmlFor="name">Name</FormLabel>
+                                    <Input 
+                                        id           = "name"
+                                        name         = "name"
+                                        type         = "text"
+                                        value        = {state.name}
+                                        variant      = "filled"                                    
+                                        onChange     = {handleInputChange}
+                                        placeholder  = 'Enter your full name'
+                                        autoComplete = "off"
+                                        marginBottom = "1em"
+                                    />
+                                    <FormLabel htmlFor="qualification">Qualification</FormLabel>
+                                    <Input 
+                                        id           = "qualification"
+                                        name         = "qualification"
+                                        type         = "text"
+                                        value        = {state.qualification}
+                                        variant      = "filled"                                    
+                                        onChange     = {handleInputChange}
+                                        placeholder  = 'Qualification'
+                                        autoComplete = "off"
+                                        marginBottom = "1em"
+                                    />
+                                    <FormLabel htmlFor="specialization">Specialization</FormLabel>
+                                    <Input 
+                                        id           = "specialization"
+                                        name         = "specialization"
+                                        type         = "text"
+                                        value        = {state.specialization}
+                                        variant      = "filled"                                    
+                                        onChange     = {handleInputChange}
+                                        placeholder  = 'Enter specialization'
+                                        autoComplete = "off"
+                                        marginBottom = "1em"
+                                    />
+                                    <HStack>
+                                        <Button
+                                            type         = "submit"
+                                            width        = "100%"
+                                            onClick      = {Previous}
+                                            colorScheme  = "green"
+                                        >
+                                            Previous
+                                        </Button>
+                                        <Button
+                                            type         = "submit"
+                                            width        = "100%"
+                                            onClick      = {Next}
+                                            colorScheme  = "green"
+                                        >
+                                            Next
+                                        </Button>
+                                    </HStack>
+                                </FormControl>
+                            </form>
                             <Box
                                 marginTop = "1em"
                                 textAlign = "center"

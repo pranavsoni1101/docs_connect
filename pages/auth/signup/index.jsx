@@ -6,7 +6,7 @@ import DoctorDetails from '../../../components/SignUp/DoctorDetails';
 
 const LogIn = () => {
 
-    const [step, setStep] = useState(0);
+    const [step, setStep] = useState(1);
     const [state, setState] = useState({
         name: "",
         email: "",
@@ -41,6 +41,7 @@ const LogIn = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log("Submit called babe");
+        console.log(state);
     }
 
     const inputType = state.show ? 'text' : 'password';
@@ -67,12 +68,42 @@ const LogIn = () => {
                                     prevStep     = {prevStep}
                                     handleSubmit = {handleSubmit}
                                 />
-                                 
-    return(
-        <>
-            {renderFormStep}   
-        </>
-    )
+                               
+    
+    switch(step) {
+        case 1: return(
+            <UserDetails 
+                state              = {state}
+                nextStep           = {nextStep}
+                inputType          = {inputType}
+                handleInputChange  = {handleInputChange}
+                handlePasswordShow = {handlePasswordShow}
+            />
+        );
+        case 2: return(
+            <DoctorDetails 
+                state             = {state}
+                prevStep          = {prevStep}
+                nextStep          = {nextStep}
+                handleInputChange = {handleInputChange}
+            />
+        )
+        case 3: return(
+            <ReviewInfo 
+                state        = {state}
+                prevStep     = {prevStep}
+                handleSubmit = {handleSubmit}
+            />
+        )
+        default: return(
+            null
+        )
+    }
+    // return(
+    //     <>
+    //         {renderFormStep}   
+    //     </>
+    // )
 }
 
 export default LogIn;
