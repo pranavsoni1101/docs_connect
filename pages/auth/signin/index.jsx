@@ -11,6 +11,7 @@ import { FaFacebookF } from "react-icons/fa";
 import Section from '../../../components/Section';
 import SectionContent from '../../../components/Section/SectionContent';
 import Link from "next/link";
+import Head from "next/head";
 
 const SignIn = ({csrfToken}) => {
 
@@ -39,6 +40,9 @@ const SignIn = ({csrfToken}) => {
 
     return(
         <>
+            <Head>
+                <title>Sign In</title>
+            </Head>
             <Section>
                 <SectionContent>
                     <Center>
