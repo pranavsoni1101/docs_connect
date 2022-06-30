@@ -4,7 +4,7 @@ import { Box, Center, FormControl,
          InputGroup, InputRightElement, Button, 
          VStack, Text
 } from "@chakra-ui/react";
-import { signIn, getCsrfToken } from "next-auth/react";
+import { signIn} from "next-auth/react";
 import { FcGoogle } from "react-icons/fc";
 import { useSession } from "next-auth/react";
 import { FaFacebookF } from "react-icons/fa";
@@ -13,7 +13,7 @@ import SectionContent from '../../../components/Section/SectionContent';
 import Link from "next/link";
 import Head from "next/head";
 
-const SignIn = ({csrfToken}) => {
+const SignIn = () => {
 
     const {data: session, status} = useSession();
     console.log("session", session);
@@ -64,11 +64,6 @@ const SignIn = ({csrfToken}) => {
                                 method="post"
                                 action="/api/auth/callback/credentials"
                             >
-                                <Input 
-                                    name="csrfToken"
-                                    type= "hidden"
-                                    defaultValue={csrfToken}
-                                />
                                 <FormLabel htmlFor="email">Email</FormLabel>
                                 <Input 
                                     id           = "email"
@@ -159,11 +154,3 @@ const SignIn = ({csrfToken}) => {
 }
 
 export default SignIn;
-
-export async function getServerSideProps(context) {
-    return {
-      props: {
-        csrfToken: await getCsrfToken(context),
-      },
-    }
-  }
