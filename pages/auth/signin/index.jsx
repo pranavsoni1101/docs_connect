@@ -4,9 +4,7 @@ import { Box, Center, FormControl,
          InputGroup, InputRightElement, Button, 
          VStack, Text
 } from "@chakra-ui/react";
-import { signIn} from "next-auth/react";
 import { FcGoogle } from "react-icons/fc";
-import { useSession } from "next-auth/react";
 import { FaFacebookF } from "react-icons/fa";
 import Section from '../../../components/Section';
 import SectionContent from '../../../components/Section/SectionContent';
@@ -15,8 +13,6 @@ import Head from "next/head";
 
 const SignIn = () => {
 
-    const {data: session, status} = useSession();
-    console.log("session", session);
 
     const [state, setState] = useState({
         email: "",
