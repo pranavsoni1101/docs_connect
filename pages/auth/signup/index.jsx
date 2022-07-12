@@ -14,7 +14,7 @@ import axios from 'axios';
 const LogIn = () => {
 
     const [state, setState] = useState({
-        name: "",
+        docname: "",
         email: "",
         mobile: "",
         password: "",
@@ -38,7 +38,7 @@ const LogIn = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         axios.post("http://localhost:3000/api/signup", {
-            name: state.name,
+            docname: state.docname,
             email: state.email,
             mobile: state.mobile,
             password: state.password,
@@ -74,12 +74,12 @@ const LogIn = () => {
                                     colSpan={6}
                                 >
                                     <FormControl>
-                                        <FormLabel htmlFor="name">Name</FormLabel>
+                                        <FormLabel htmlFor="docname">Name</FormLabel>
                                         <Input 
-                                            id           = "name"
-                                            name         = "name"
+                                            id           = "docname"
+                                            name         = "docname"
                                             type         = "text"
-                                            value        = {state.name}
+                                            value        = {state.docname}
                                             variant      = "filled"
                                             onChange     = {handleInputChange}                                    
                                             placeholder  = 'Enter your full name'

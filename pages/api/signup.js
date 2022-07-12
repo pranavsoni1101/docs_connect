@@ -2,8 +2,8 @@ import { createUser } from '../../lib/user'
 
 export default async function signup(req, res) {
   try {
-    console.log("req body from sign up", req.body);
-    await createUser(req.body)
+    // console.log("req body from sign up", req.body);
+    await createUser(req, res, req.body)
     res.status(200).send({ done: true })
   } catch (error) {
     console.error(error)
