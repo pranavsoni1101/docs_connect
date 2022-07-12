@@ -9,6 +9,7 @@ import Link from "next/link";
 import Section from '../../../components/Section';
 import SectionContent from '../../../components/Section/SectionContent';
 import Head from 'next/head';
+import axios from 'axios';
 
 const LogIn = () => {
 
@@ -17,7 +18,6 @@ const LogIn = () => {
         email: "",
         mobile: "",
         password: "",
-        repassword: "",
         qualification: "",
         specialization: "",
         show: false,
@@ -37,6 +37,16 @@ const LogIn = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        axios.post("http://localhost:3000/api/signup", {
+            name: state.name,
+            email: state.email,
+            mobile: state.mobile,
+            password: state.password,
+            qualification: state.qualification,
+            specialization: state.specialization,
+        })
+        .then(response => console.log("Data sent successfully"))
+        .catch(err => console.log("Data error:", err ))
         console.log(state);
     }
 
