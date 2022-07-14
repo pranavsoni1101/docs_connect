@@ -10,6 +10,7 @@ import Section from '../../../components/Section';
 import SectionContent from '../../../components/Section/SectionContent';
 import Link from "next/link";
 import Head from "next/head";
+import axios from "axios";
 
 const SignIn = () => {
 
@@ -31,6 +32,16 @@ const SignIn = () => {
         ...state, 
         show: !state.show
     })
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        axios.post("http://localhost:3000/api/login", {
+            email: state.email,
+            password: state.password
+        })
+        .then(response => console.log("Successfully sent data"))
+        .catch(error=> console.log("oops login error: ", error))
+    }
 
     const inputType = state.show ? 'text' : 'password';
 
@@ -96,8 +107,8 @@ const SignIn = () => {
                                 <Button
                                     type         = "submit"
                                     width        = "sm"
+                                    onClick      = {handleSubmit}
                                     colorScheme  = "green"
-                                    onClick={() => signIn()}
                                 >
                                     Submit
                                 </Button>
