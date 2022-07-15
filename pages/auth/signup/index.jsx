@@ -74,14 +74,15 @@ const LogIn = () => {
         })
         .catch(err => {
             toast({
-            title: `OOPS! An error occured`,
-            description: "Try again in some time",
-            status: "error",
-            duration: 5000,
-            isClosable: true,
-            position: "bottom",
-            variant: "left-accent"
-        });})
+                title: `OOPS! An error occured`,
+                description: "Try again in some time",
+                status: "error",
+                duration: 5000,
+                isClosable: true,
+                position: "bottom",
+                variant: "left-accent"
+            });
+        })
         console.log(state);
     }
 

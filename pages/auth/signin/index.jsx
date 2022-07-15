@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Box, Center, FormControl, 
          FormLabel, Heading, Input,
          InputGroup, InputRightElement, Button, 
-         VStack, Text
+         VStack, Text, useToast
 } from "@chakra-ui/react";
 import { useRouter } from 'next/router'
 import { FcGoogle } from "react-icons/fc";
@@ -16,6 +16,7 @@ import axios from "axios";
 const SignIn = () => {
 
     const router = useRouter();
+    const toast  = useToast()
 
     const [state, setState] = useState({
         email: "",
@@ -42,9 +43,26 @@ const SignIn = () => {
             password: state.password
         })
         .then(response => {
+            toast({
+                title: "You have successfully logged in",
+                status: "success",
+                duration: 5000,
+                isClosable: true,
+                position: "bottom",
+                variant: "left-accent"
+            });
             router.push("/")
         })
-        .catch(error=> console.log("oops login error: ", error))
+        .catch(error=> {
+            toast({
+                title: "Error logging you in",
+                status: "error",
+                duration: 5000,
+                isClosable: true,
+                position: "bottom",
+                variant: "left-accent"
+            });
+        })
     }
 
     const inputType = state.show ? 'text' : 'password';
