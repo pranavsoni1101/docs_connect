@@ -3,16 +3,19 @@ import { useState } from 'react';
 import { Center, Box, Heading, 
     FormControl, FormLabel, Input, 
     InputGroup, InputRightElement, Button,
-    Text, Grid, GridItem
+    Text, Grid, GridItem, useToast
 } from '@chakra-ui/react';
 import Link from "next/link";
 import Section from '../../../components/Section';
 import SectionContent from '../../../components/Section/SectionContent';
 import Head from 'next/head';
 import axios from 'axios';
+import { useRouter } from 'next/router';
 
 const LogIn = () => {
 
+    const router = useRouter();
+    const toast = useToast()
     const [state, setState] = useState({
         docname: "",
         email: "",
@@ -47,8 +50,38 @@ const LogIn = () => {
             qualification: state.qualification,
             specialization: state.specialization,
         })
-        .then(response => console.log("Data sent successfully"))
-        .catch(err => console.log("Data error:", err ))
+        .then(response => {
+            toast({
+                title: `${state.docname} registerd successfully!`,
+                description: "Login to resume!",
+                status: "success",
+                duration: 5000,
+                isClosable: true,
+                position: "bottom",
+                variant: "left-accent"
+            });
+            router.push("/auth/signin");
+            setState({
+                docname: "",
+                email: "",
+                mobile: "",
+                password: "",
+                city: "",
+                qualification: "",
+                specialization: "",
+                show: false,
+            })
+        })
+        .catch(err => {
+            toast({
+            title: `OOPS! An error occured`,
+            description: "Try again in some time",
+            status: "error",
+            duration: 5000,
+            isClosable: true,
+            position: "bottom",
+            variant: "left-accent"
+        });})
         console.log(state);
     }
 
