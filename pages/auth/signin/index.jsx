@@ -4,6 +4,7 @@ import { Box, Center, FormControl,
          InputGroup, InputRightElement, Button, 
          VStack, Text
 } from "@chakra-ui/react";
+import { useRouter } from 'next/router'
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebookF } from "react-icons/fa";
 import Section from '../../../components/Section';
@@ -14,6 +15,7 @@ import axios from "axios";
 
 const SignIn = () => {
 
+    const router = useRouter();
 
     const [state, setState] = useState({
         email: "",
@@ -39,7 +41,9 @@ const SignIn = () => {
             email: state.email,
             password: state.password
         })
-        .then(response => console.log("Successfully sent data"))
+        .then(response => {
+            router.push("/")
+        })
         .catch(error=> console.log("oops login error: ", error))
     }
 

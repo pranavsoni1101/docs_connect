@@ -10,6 +10,7 @@
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
     "@hapi/iron": "^7.0.0",
+    "agora-rtc-react": "github:AgoraIO-Community/agora-rtc-react#v1.0.0",
     "axios": "^0.26.0",
     "cookie": "^0.5.0",
     "framer-motion": "^5.6.0",
