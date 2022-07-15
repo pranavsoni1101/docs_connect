@@ -18,6 +18,7 @@ const LogIn = () => {
         email: "",
         mobile: "",
         password: "",
+        city: "",
         qualification: "",
         specialization: "",
         show: false,
@@ -41,6 +42,7 @@ const LogIn = () => {
             docname: state.docname,
             email: state.email,
             mobile: state.mobile,
+            city: state.city,
             password: state.password,
             qualification: state.qualification,
             specialization: state.specialization,
@@ -125,6 +127,23 @@ const LogIn = () => {
                                     colSpan={6}
                                 >
                                     <FormControl>
+                                        <FormLabel htmlFor="city">City / Town</FormLabel>
+                                        <Input 
+                                            id           = "city"
+                                            name         = "city"
+                                            type         = "text"
+                                            value        = {state.city}
+                                            variant      = "filled"
+                                            onChange     = {handleInputChange}                                    
+                                            placeholder  = 'Enter City of practice'
+                                            autoComplete = "off"
+                                        />
+                                    </FormControl>
+                                </GridItem>
+                                <GridItem
+                                    colSpan={6}
+                                >
+                                    <FormControl>
                                         <FormLabel htmlFor="qualification">Qualification</FormLabel>
                                         <Input 
                                             id           = "qualification"
@@ -178,7 +197,9 @@ const LogIn = () => {
                                     </FormControl>
                                 </GridItem>
                                 <GridItem
-                                    colSpan={4}
+                                    colSpan  ={4}
+                                    colEnd   = {4}  
+                                    colStart = {0}
                                 >
                                     <Button
                                         type        = 'submit'
